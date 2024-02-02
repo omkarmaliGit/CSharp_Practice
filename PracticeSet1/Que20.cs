@@ -19,7 +19,7 @@ namespace PracticeQuetions1
         int number;
         void acceptNumber()
         {
-            Console.Write("Enter Even Number : ");
+            Console.Write("Enter Number : ");
             number = Convert.ToInt32(Console.ReadLine());
             if (number % 2 != 0)
             {
@@ -27,7 +27,7 @@ namespace PracticeQuetions1
             }
             else
             {
-                Console.WriteLine("Even Number");
+                Console.WriteLine($"Even Number --> {number}");
             }
         }
 

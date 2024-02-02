@@ -18,7 +18,7 @@ namespace PracticeQuetions1
             Console.Write("How much integers you want? : ");
             size = Convert.ToInt32(Console.ReadLine());
 
-            Console.WriteLine("\nEnter value");
+            Console.WriteLine("\nEnter values ");
             for (int i = 0; i < size; i++)
             {
                 Console.Write($"for index {i + 1} : ");
