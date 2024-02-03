@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,20 +17,24 @@ namespace PracticeQuetions1
         protected class Marks
         {
             int[] mark = new int[3];
-            internal void addmarks()
+            protected float totalMarks;
+            internal float addmarks()
             {
                 for (int i = 0; i < 3; i++)
                 {
                     Console.Write($"enter Subject {i + 1} Marks : ");
                     mark[i] = Convert.ToInt32(Console.ReadLine());
+                    totalMarks += mark[i];
                 }
+                return totalMarks;
             }
 
             internal void displaymarks()
             {
+                Console.Write("Student Marks : ");
                 for (int i = 0; i < 3; i++)
                 {
-                    Console.Write($"Subject {i + 1} marks :  {mark[i]}");
+                    Console.Write($"\nSubject {i + 1} marks :  {mark[i]}");
                 }
             }
         }
@@ -43,21 +48,26 @@ namespace PracticeQuetions1
 
         internal void addStudent()
         {
-            Console.Write("enter RollNo. : ");
+            float totalM;
+            Console.Write("\nenter RollNo. : ");
             roll_no = Convert.ToInt32(Console.ReadLine());
             Console.Write("enter Name : ");
             name = Console.ReadLine();
             mark = new Marks();
-            mark.addmarks();
-            percentage = Convert.ToSingle(Console.ReadLine());
-            grade = Convert.ToChar(Console.ReadLine());
+            totalM = mark.addmarks();
+            percentage = totalM / 3;
+
+            if (percentage >= 80.00) { grade = 'A'; }
+            else if (percentage >= 60.00 && percentage < 80.00) { grade = 'B'; }
+            else if (percentage >= 40.00 && percentage < 60.00) { grade = 'C'; }
+            else { grade = 'F'; }
         }
-         
+
         internal void showResult()
         {
-            Console.WriteLine($"{roll_no}\n{name}");
+            Console.WriteLine($"\nStudent RollNo : {roll_no}\nStudent Name : {name}");
             mark.displaymarks();
-            Console.WriteLine($"{percentage}\n{grade}");
+            Console.WriteLine($"\nStudent Percentage : {percentage}\nStudent Grade : {grade}");
         }
     }
 
@@ -67,7 +77,7 @@ namespace PracticeQuetions1
         int n;
         void addDetails()
         {
-            Console.WriteLine("How many students details you want to add : ");
+            Console.Write("How many students details you want to add : ");
             n = Convert.ToInt32(Console.ReadLine());
 
             result = new Result[n];
@@ -81,6 +91,24 @@ namespace PracticeQuetions1
         }
         void displayResult()
         {
+            Result temp = new Result();
+
+            for (int i = 0; i < n; i++)
+            {
+                for (int j = i + 1; j < n; j++)
+                {
+                    if (result[i].percentage < result[j].percentage)
+                    {
+                        temp = result[i];
+                        result[i] = result[j];
+                        result[j] = temp;
+                    }
+
+                }
+            }
+
+            Console.WriteLine("\n --> Displaying Result <-- ");
+
             for (int i = 0; i < n; i++)
             {
                 result[i].showResult();

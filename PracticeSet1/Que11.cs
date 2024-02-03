@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PracticeQuetions1
 {
-    /*11.	Write a program to define a class item (item_code, name, price & quantity). Define default & parameterized constructors. Accept details from the user. Calculate total price of all items & display details of item entered by user as well as sort all the items on the basis of cost.*/
+    /* 11. Write a program to define a class item (item_code, name, price & quantity). Define default & parameterized constructors. Accept details from the user. Calculate total price of all items & display details of item entered by user as well as sort all the items on the basis of cost. */
 
     class Item
     {
@@ -40,34 +40,68 @@ namespace PracticeQuetions1
 
             for (int i = 0; i < size; i++)
             {
-                Console.Write($"\n -- enter Item {i+1} details -- ");
-                Console.Write("Item Code : ");
+                Console.Write($"\n -- enter Item {i + 1} details -- ");
+                Console.Write("\nItem Code : ");
                 int item_code = Convert.ToInt32(Console.ReadLine());
-                Console.WriteLine("Name : ");
+                Console.Write("Name : ");
                 string name = Console.ReadLine();
-                Console.WriteLine("Price : ");
+                Console.Write("Price : ");
                 int price = Convert.ToInt32(Console.ReadLine());
-                Console.WriteLine("Quantity : ");
+                Console.Write("Quantity : ");
                 int quantity = Convert.ToInt32(Console.ReadLine());
 
                 item[i] = new Item(item_code, name, price, quantity);
             }
         }
 
+        internal void sorting()
+        {
+            Item tempItem = new Item();
+
+            for (int i = 0; i < size; i++)
+            {
+                for (int j = i + 1; j < size; j++)
+                {
+                    if (item[i].price > item[j].price)
+                    {
+                        tempItem = item[i];
+                        item[i] = item[j];
+                        item[j] = tempItem;
+                    }
+                }
+            }
+        }
+
         internal void displayDetails()
         {
-            int totalPrice;
+            int totalPrice = 0;
 
-            Console.WriteLine("Before sorting --> ");
             foreach (var it in item)
             {
-                Console.WriteLine(it.item_code +  " " + it.name + " " + it.price + " " + it.quantity);
+                totalPrice += (it.price * it.quantity);
+            }
+            Console.WriteLine($"\nTotal price of all item : {totalPrice}");
+
+            Console.WriteLine("\nBefore sorting --> ");
+            foreach (var it in item)
+            {
+                Console.WriteLine(it.item_code + " " + it.name + " " + it.price + " " + it.quantity);
             }
 
+            sorting();
 
+            Console.WriteLine("\nAfter sorting --> ");
+            foreach (var it in item)
+            {
+                Console.WriteLine(it.item_code + " " + it.name + " " + it.price + " " + it.quantity);
+            }
 
-            //item.Sort((item1, item2) => item1.price.CompareTo(item2.price)); 
+        }
 
+        internal void menu()
+        {
+            acceptDetails();
+            displayDetails();
         }
 
     }
