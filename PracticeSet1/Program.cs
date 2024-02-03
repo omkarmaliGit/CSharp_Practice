@@ -35,13 +35,13 @@ namespace PracticeQuetions1
             //q8.menu();
 
             Que09 q9 = new Que09();
-            //q9.menu(); //pending
+            //q9.menu();
 
             Que10 q10 = new Que10();
             //q10.runProgram();
 
             Que11 q11 = new Que11();
-            //q11.acceptDetails(); //pending
+            //q11.menu();
 
             Que12 q12 = new Que12();
             //q12.menu();
@@ -50,7 +50,7 @@ namespace PracticeQuetions1
             //q13.print();
 
             Que14 q14 = new Que14();
-            q14.dateValidater();
+            //q14.dateValidater();
 
             Que15 q15 = new Que15();
             //q15.email();
@@ -68,7 +68,7 @@ namespace PracticeQuetions1
             //q19.start();
 
             Que20 q20 = new Que20();
-            //q20.tryThis();
+            q20.tryThis();
 
             Console.ReadKey();
         }
